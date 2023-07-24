@@ -1,8 +1,1 @@
-# casc-demo
-
-casc demo has simple examples for casc for controller
-
-See https://github.com/cloudbees/sa-rep-terraform for latest updates and issues, specifically
-
-
-image:images/casc_inherit.png[alt text]
+casc-demo library for CloudBees CI
