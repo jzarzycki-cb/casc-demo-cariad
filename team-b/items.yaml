@@ -1,0 +1,42 @@
+removeStrategy:
+  rbac: SYNC
+  items: NONE
+items:
+  - kind: folder
+    name: admin
+    description: ''
+    displayName: admin
+    groups:
+      - roles:
+          - name: administer
+            grantedAt: current
+        name: team-b-admin
+
+  - kind: folder
+    name: jobs
+    description: ''
+    displayName: jobs
+    groups:
+      - roles:
+          - name: developer
+            grantedAt: current
+        name: team-b-dev
+    items:
+      - kind: pipeline
+        name: test-job
+        concurrentBuild: true
+        definition:
+          cpsFlowDefinition:
+            sandbox: true
+            script: "// Uses Declarative syntax to run commands inside a container.\n\
+              pipeline {\n    agent {\n        kubernetes {\n            yaml '''\napiVersion:\
+              \ v1\nkind: Pod\nspec:\n  containers:\n  - name: shell\n    image: ubuntu\n\
+              \    command:\n    - sleep\n    args:\n    - infinity\n'''\n \n        \
+              \    defaultContainer 'shell'\n        }\n    }\n    stages {\n        stage('Main')\
+              \ {\n            steps {\n                sh 'hostname'\n            }\n\
+              \        }\n    }\n}\n"
+        description: ''
+        disabled: false
+        displayName: test-job
+        resumeBlocked: false
+

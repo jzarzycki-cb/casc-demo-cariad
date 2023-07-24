@@ -1,0 +1,13 @@
+jenkins:
+  systemMessage: 'Jenkins configured using CloudBees CI CasC - bundle team-a demo a THIS IS NEW'
+  
+credentials:
+  system:
+    domainCredentials:
+    - credentials:
+      - usernamePassword:
+          description: "gururepservice_id_local"
+          id: "gururepservice_id"
+          password: "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"
+          scope: GLOBAL
+          username: "gururepservice"

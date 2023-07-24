@@ -1,0 +1,20 @@
+globalCloudBeesPipelineTemplateCatalog:
+  catalogs:
+    - branchOrTag: "casc-tests"
+      scm:
+        github:
+          id: "pl1a"
+          configuredByUrl: true
+          credentialsId: "gururepservice-cred"
+          repoOwner: "guru-rep"
+          repository: "pipeline-template"
+          repositoryUrl: "https://github.com/guru-rep/pipeline-template.git"
+          traits:
+            - gitHubBranchDiscovery:
+                strategyId: 1
+            - gitHubPullRequestDiscovery:
+                strategyId: 1
+            - gitHubForkDiscovery:
+                strategyId: 1
+                trust: "gitHubTrustPermissions"
+      updateInterval: "1d"

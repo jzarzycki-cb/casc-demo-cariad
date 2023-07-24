@@ -1,0 +1,7 @@
+id: "errorbundle"
+version: "1"
+apiVersion: "x"
+jcasc:
+  - "jenkins.yaml"
+
+

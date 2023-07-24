@@ -1,0 +1,101 @@
+removeStrategy:
+  rbac: SYNC
+  items: NONE
+items:
+- kind: folder
+  name: admin
+  description: administrative jobs
+  displayName: admin jobs
+  items:
+  - kind: backupAndRestore
+    name: Backup
+    blockBuildWhenDownstreamBuilding: false
+    blockBuildWhenUpstreamBuilding: false
+    buildersList:
+    - backupBuilder:
+        subjects:
+        - buildRecordSubject: {}
+        - jobConfigurationSubject: {}
+        - systemConfigurationSubject:
+            omitMasterKey: false
+        format:
+          tarGzFormat: {}
+        exclusive: false
+        store:
+          localFileStore:
+            dir: /tmp/backups
+        retentionPolicy:
+          upToNRetentionPolicy:
+            n: 2
+        safeDelaySeconds: 0
+    concurrentBuild: false
+    description: ''
+    disabled: false
+    displayName: Backup
+    label: local-executor
+  - kind: backupAndRestore
+    name: Restore
+    blockBuildWhenDownstreamBuilding: false
+    blockBuildWhenUpstreamBuilding: false
+    buildersList:
+    - restoreBuilder:
+        ignoreConfirmationFile: true
+        preserveJenkinsHome: false
+        ignoreDigestCheck: false
+        store:
+          localFileStore:
+            dir: /tmp/backups
+        restoreDirectory: ''
+    concurrentBuild: false
+    description: ''
+    disabled: false
+    displayName: Restore
+    label: local-executor
+- kind: folder
+  name: jobs
+  description: ''
+  displayName: jobs
+  items:
+  - kind: pipeline
+    name: pipe1
+    concurrentBuild: true
+    definition:
+      cpsFlowDefinition:
+        sandbox: true
+        script: |
+          pipeline {
+              agent{label "local-executor"}
+
+              stages {
+                  stage('Hello') {
+                      steps {
+                          echo 'Hello World'
+                      }
+                  }
+              }
+          }
+    description: ''
+    disabled: false
+    displayName: pipe1
+    resumeBlocked: false
+  - kind: pipeline
+    name: pipe2
+    concurrentBuild: true
+    definition:
+      cpsFlowDefinition:
+        sandbox: true
+        script: |
+          pipeline {
+              agent{label "local-executor"}
+              stages {
+                  stage('Hello') {
+                      steps {
+                          echo 'Hello World'
+                      }
+                  }
+              }
+          }
+    description: ''
+    disabled: false
+    displayName: pipe2
+    resumeBlocked: false

@@ -1,0 +1,39 @@
+removeStrategy:
+  items: "none"
+  rbac: "sync"
+
+items:
+
+  - kind: folder
+    name: jobs
+    description: ''
+    displayName: jobs
+    items:
+
+      - kind: cloudbeesTemplatedJob
+        catalog: CentralServicesDefault
+        name: alpha
+        model: CentralServicesDefault/MavenJavaPipeline
+        attributes:
+          - value: guru-rep
+            key: repoOwner
+          - value: alpha-m
+            key: repoName
+          - value: alpha-m
+            key: name
+          - value: gururepservice-cred
+            key: repoCreds
+
+      - kind: cloudbeesTemplatedJob
+        catalog: CentralServicesDefault
+        name: beta
+        model: CentralServicesDefault/MavenJavaPipeline
+        attributes:
+          - value: guru-rep
+            key: repoOwner
+          - value: beta-m
+            key: repoName
+          - value: beta-m
+            key: name
+          - value: gururepservice-cred
+            key: repoCreds           

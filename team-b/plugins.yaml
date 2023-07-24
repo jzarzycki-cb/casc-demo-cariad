@@ -1,0 +1,4 @@
+plugins:
+  - id: ant
+  - id: electricflow
+  - id: beer
