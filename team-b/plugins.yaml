@@ -2,3 +2,4 @@ plugins:
   - id: ant
   - id: electricflow
   - id: beer
+  - id: cloudbees-nodes-plus

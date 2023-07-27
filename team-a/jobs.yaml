@@ -37,3 +37,25 @@ items:
             key: name
           - value: gururepservice-cred
             key: repoCreds           
+      - kind: pipeline
+        name: helloWorld
+        concurrentBuild: true
+        definition:
+          cpsFlowDefinition:
+            sandbox: true
+            script: |
+              pipeline {
+                  agent any
+
+                  stages {
+                      stage('Hello') {
+                          steps {
+                              echo 'Hello World'
+                          }
+                      }
+                  }
+              }
+        description: ''
+        disabled: false
+        displayName: helloWorld
+        resumeBlocked: false

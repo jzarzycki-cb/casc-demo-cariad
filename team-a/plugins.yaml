@@ -3,3 +3,8 @@ plugins:
   - id: blueocean
   - id: electricflow
   - id: beer
+  - id: azure-credentials # 3rd dep
+  - id: azure-sdk # 3rd dep
+  - id: azure-vm-agents # 3rd lst
+  - id: cloud-stats # 3rd dep
+  - id: jsch # cap dep

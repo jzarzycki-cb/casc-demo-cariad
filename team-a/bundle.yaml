@@ -12,4 +12,6 @@ items:
 jcasc:
   - "jenkins.yaml"
   - "pipelinetemplate.yaml"
+catalog:
+  - "plugin-catalog.yaml"
 
