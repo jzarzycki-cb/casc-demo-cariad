@@ -1,5 +1,4 @@
 plugins:
-- id: "antisamy-markup-formatter"
 - id: "cloudbees-casc-client"
 - id: "cloudbees-casc-items-commons"
 - id: "cloudbees-casc-items-controller"
@@ -16,8 +15,6 @@ plugins:
 - id: "cloudbees-workflow-ui"
 - id: "configuration-as-code"
 - id: "extended-read-permission"
-- id: "git"
-- id: "github-branch-source"
 - id: "kubernetes-credentials-provider"
 - id: "managed-master-hibernation"
 - id: "notification-api"
@@ -29,4 +26,9 @@ plugins:
 - id: "warnings-ng"
 - id: "workflow-aggregator"
 - id: "workflow-cps-checkpoint"
-- id: "github-oauth"
+- id: git # cap dep
+- id: github-api # cap dep
+- id: github-branch-source # cap dep
+- id: github-oauth # 3rd lst
+- id: matrix-project # cap dep
+- id: workflow-multibranch # cap dep
