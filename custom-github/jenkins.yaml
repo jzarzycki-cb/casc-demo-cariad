@@ -1,0 +1,5 @@
+jenkins:
+  numExecutors: 0
+                  
+  cloudbeesPrometheus:
+    collectingMetricsPeriodInSeconds: 30
