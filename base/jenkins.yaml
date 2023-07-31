@@ -7,7 +7,7 @@ unclassified:
     - "build"
     - "web"
     enabled: true
-    gracePeriod: 120
+    gracePeriod: 1200
   globalLibraries:
     libraries:
     - name: "default"
