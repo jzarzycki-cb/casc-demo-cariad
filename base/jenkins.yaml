@@ -2,6 +2,12 @@ jenkins:
   numExecutors: 0
 
 unclassified:
+  hibernationConfiguration:
+    activities:
+    - "build"
+    - "web"
+    enabled: true
+    gracePeriod: 120
   globalLibraries:
     libraries:
     - name: "default"
