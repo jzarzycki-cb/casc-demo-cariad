@@ -4,6 +4,12 @@ jenkins:
   - "operationsCenterAgentProvisioningService"
 
 unclassified:
+  hibernationConfiguration:
+    activities:
+    - "build"
+    - "web"
+    enabled: true
+    gracePeriod: 1200
   globalLibraries:
     libraries:
     - name: "default"
