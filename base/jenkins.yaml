@@ -47,10 +47,3 @@ unclassified:
               - gitHubForkDiscovery:
                   strategyId: 1
                   trust: "gitHubTrustPermissions"        
-             
-                  
-                  
-  cloudbeesPrometheus:
-    collectingMetricsPeriodInSeconds: 30
-
-  
