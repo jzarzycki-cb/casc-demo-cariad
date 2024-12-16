@@ -2,4 +2,5 @@ plugins:
   - id: ant
   - id: blueocean
   - id: electricflow
-
+  - id: beer
+  - id: sonar

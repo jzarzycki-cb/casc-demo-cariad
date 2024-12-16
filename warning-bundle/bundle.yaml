@@ -1,7 +1,0 @@
-id: "warbundle"
-version: "1"
-apiVersion: "1"
-jcasc:
-  - "jenkins.yaml"
-
-

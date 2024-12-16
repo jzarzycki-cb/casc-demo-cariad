@@ -1,2 +1,10 @@
 jenkins:
   systemMessage: 'Jenkins configured using CloudBees CI CasC - [bundle team-b]  '
+
+unclassified:
+  hibernationConfiguration:
+    activities:
+    - "build"
+    - "web"
+    enabled: true
+    gracePeriod: 600  

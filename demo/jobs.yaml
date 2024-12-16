@@ -1,0 +1,337 @@
+removeStrategy:
+  rbac: SYNC
+  items: NONE
+items:
+- kind: folder
+  name: demos
+  displayName: demos
+  items:
+  - kind: folder
+    name: buildstorm-prevention
+    description: ''
+    displayName: buildstorm-prevention
+    items:
+    - kind: multibranch
+      name: buildstorm-prevention-off
+      displayName: buildstorm-prevention-off
+      orphanedItemStrategy:
+        defaultOrphanedItemStrategy:
+          pruneDeadBranches: true
+          daysToKeep: -1
+          numToKeep: -1
+          abortBuilds: false
+      projectFactory:
+        workflowBranchProjectFactory:
+          scriptPath: Jenkinsfile
+      properties:
+      - envVars: {}
+      sourcesList:
+      - branchSource:
+          source:
+            github:
+              apiUri: https://api.github.com
+              traits:
+              - gitHubBranchDiscovery:
+                  strategyId: 1
+              - gitHubPullRequestDiscovery:
+                  strategyId: 2
+              - gitHubForkDiscovery:
+                  trust:
+                    gitHubTrustPermissions: {}
+                  strategyId: 2
+              repoOwner: guru-rep
+              credentialsId: gururepservice-cred
+              id: 5d714bd7-ace5-41e5-a7a1-d09b3546da0a
+              repository: bldstormdemo
+              configuredByUrl: true
+              repositoryUrl: https://github.com/guru-rep/bldstormdemo.git
+          strategy:
+            allBranchesSame: {}
+    - kind: multibranch
+      name: buildstorm-prevention-on
+      displayName: buildstorm-prevention-on
+      orphanedItemStrategy:
+        defaultOrphanedItemStrategy:
+          pruneDeadBranches: true
+          daysToKeep: -1
+          numToKeep: -1
+          abortBuilds: false
+      projectFactory:
+        workflowBranchProjectFactory:
+          scriptPath: Jenkinsfile
+      properties:
+      - envVars: {}
+      sourcesList:
+      - branchSource:
+          buildStrategies:
+          - skipInitialBuildOnFirstIndexingResetRevision: {}
+          source:
+            github:
+              apiUri: https://api.github.com
+              traits:
+              - gitHubBranchDiscovery:
+                  strategyId: 1
+              - gitHubPullRequestDiscovery:
+                  strategyId: 2
+              - gitHubForkDiscovery:
+                  trust:
+                    gitHubTrustPermissions: {}
+                  strategyId: 2
+              repoOwner: guru-rep
+              credentialsId: gururepservice-cred
+              repository: bldstormdemo
+              configuredByUrl: true
+              repositoryUrl: https://github.com/guru-rep/bldstormdemo.git
+          strategy:
+            allBranchesSame: {}
+            
+  - kind: folder
+    name: go-api-build-deploy
+    description: ''
+    displayName: go-api-build-deploy
+    items:
+    - kind: multibranch
+      name: gapi
+      displayName: gapi
+      orphanedItemStrategy:
+        defaultOrphanedItemStrategy:
+          pruneDeadBranches: true
+          daysToKeep: -1
+          numToKeep: -1
+          abortBuilds: false
+      projectFactory:
+        workflowBranchProjectFactory:
+          scriptPath: Jenkinsfile
+      properties:
+      - envVars:
+          vars:
+            '_CD_RELEASE ': 'seedRelease'
+            '_DEBUG_PL ': ' true'
+            '_MICRO_SERVICE_NAME ': ' gapi'
+            '_RUN_REL ': ' true'
+            '_NEXUS_REPO ': ' helm-hosted'
+            _NEXUS_ADDRESS: "https://${NEXUSDNS}"
+            '_CD_PROJECT ': ' release-utils'
+            '_DOCKER_DEST ': ' gururepservice'
+            '_BMAJOR ': ' 1.0'
+            '_CDDNS ': "https://${CDDNS}"
+      sourcesList:
+      - branchSource:
+          buildStrategies:
+          - skipInitialBuildOnFirstIndexingResetRevision: {}
+          source:
+            github:
+              apiUri: https://api.github.com
+              traits:
+              - gitHubBranchDiscovery:
+                  strategyId: 1
+              - gitHubPullRequestDiscovery:
+                  strategyId: 2
+              - gitHubForkDiscovery:
+                  trust:
+                    gitHubTrustPermissions: {}
+                  strategyId: 2
+              - headWildcardFilter:
+                  excludes: ''
+                  includes: main
+              repoOwner: guru-rep
+              credentialsId: gururepservice-cred
+              repository: gapi
+              configuredByUrl: true
+              repositoryUrl: https://github.com/guru-rep/gapi.git
+          strategy:
+            allBranchesSame: {}
+    properties:
+    - envVars: {}
+    - itemRestrictions:
+        filter: false
+  - kind: folder
+    name: petclinic
+    description: ''
+    displayName: petclinic
+    items:
+    - kind: multibranch
+      name: spring-petclinic
+      description: A sample Spring-based application
+      displayName: spring-petclinic
+      orphanedItemStrategy:
+        defaultOrphanedItemStrategy:
+          pruneDeadBranches: true
+          daysToKeep: -1
+          numToKeep: -1
+          abortBuilds: false
+      projectFactory:
+        workflowBranchProjectFactory:
+          scriptPath: Jenkinsfile
+      properties:
+      - envVars: {}
+      sourcesList:
+      - branchSource:
+          buildStrategies:
+          - skipInitialBuildOnFirstIndexingResetRevision: {}
+          source:
+            github:
+              apiUri: https://api.github.com
+              traits:
+              - gitHubBranchDiscovery:
+                  strategyId: 1
+              - gitHubPullRequestDiscovery:
+                  strategyId: 2
+              - gitHubForkDiscovery:
+                  trust:
+                    gitHubTrustPermissions: {}
+                  strategyId: 2
+              repoOwner: guru-apps
+              credentialsId: gururepservice-cred
+              repository: spring-petclinic
+              configuredByUrl: true
+              repositoryUrl: https://github.com/guru-apps/spring-petclinic.git
+          strategy:
+            allBranchesSame: {}
+    properties:
+    - envVars: {}
+    - itemRestrictions:
+        filter: false
+  
+  
+  - kind: folder
+    name: pipeline-templates
+    description: ''
+    displayName: pipeline-templates
+    items:
+    - kind: cloudbeesTemplatedJob
+      catalog: CentralServicesDefault
+      name: alpha
+      model: CentralServicesDefault/MavenJavaPipeline
+      attributes:
+      - type: string
+        value: guru-rep
+        key: repoOwner
+      - type: string
+        value: alpha-m
+        key: repoName
+      - type: string
+        value: alpha
+        key: name
+      - type: string
+        value: gururepservice-cred
+        key: repoCreds
+    - kind: cloudbeesTemplatedJob
+      catalog: CentralServicesDefault
+      name: beta
+      model: CentralServicesDefault/MavenJavaPipeline
+      attributes:
+      - type: string
+        value: guru-rep
+        key: repoOwner
+      - type: string
+        value: beta-m
+        key: repoName
+      - type: string
+        value: beta
+        key: name
+      - type: string
+        value: gururepservice-cred
+        key: repoCreds
+    properties:
+    - envVars: {}
+    - itemRestrictions:
+        allowedTypes:
+        - CentralServicesDefault/ContainerBuild
+        - org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject
+        - CentralServicesDefault/MavenJavaPipeline
+        filter: true
+
+  - kind: folder
+    name: ws-cache
+    description: ''
+    displayName: ws-cache
+    items:
+      - kind: multibranch
+        name: ws-cache-demo
+        description: ''
+        displayName: ws-cache-demo
+        orphanedItemStrategy:
+          defaultOrphanedItemStrategy:
+            pruneDeadBranches: true
+            daysToKeep: -1
+            numToKeep: -1
+            abortBuilds: false
+        projectFactory:
+          workflowBranchProjectFactory:
+            scriptPath: Jenkinsfile
+        properties:
+          - envVars: {}
+        sourcesList:
+          - branchSource:
+              source:
+                github:
+                  apiUri: https://api.github.com
+                  traits:
+                    - gitHubBranchDiscovery:
+                        strategyId: 1
+                    - gitHubPullRequestDiscovery:
+                        strategyId: 2
+                    - gitHubForkDiscovery:
+                        trust:
+                          gitHubTrustPermissions: {}
+                        strategyId: 2
+                    - headWildcardFilter:
+                        excludes: ''
+                        includes: cache*
+                  repoOwner: guru-rep
+                  credentialsId: gururepservice-cred
+                  repository: ws-cache-demo
+                  configuredByUrl: true
+                  repositoryUrl: https://github.com/guru-rep/ws-cache-demo.git
+              strategy:
+                allBranchesSame: {}
+    properties:
+- kind: folder
+  name: jobs
+  description: ''
+  displayName: jobs
+  items:
+  - kind: multibranch
+    name: cdro-agent-container
+    description: Build to configure a CDRO agent with additonal ports exposed forrunning
+      tomcat ion the same container
+    displayName: cdro-agent-container
+    orphanedItemStrategy:
+      defaultOrphanedItemStrategy:
+        pruneDeadBranches: true
+        daysToKeep: -1
+        numToKeep: -1
+        abortBuilds: false
+    projectFactory:
+      workflowBranchProjectFactory:
+        scriptPath: Jenkinsfile
+    properties:
+    - envVars: {}
+    sourcesList:
+    - branchSource:
+        buildStrategies:
+        - skipInitialBuildOnFirstIndexingResetRevision: {}
+        source:
+          github:
+            apiUri: https://api.github.com
+            traits:
+            - gitHubBranchDiscovery:
+                strategyId: 1
+            - gitHubPullRequestDiscovery:
+                strategyId: 2
+            - gitHubForkDiscovery:
+                trust:
+                  gitHubTrustPermissions: {}
+                strategyId: 2
+            - headWildcardFilter:
+                excludes: ''
+                includes: main
+            repoOwner: guru-rep
+            credentialsId: gururepservice-cred
+            repository: cdro-agent-container
+            configuredByUrl: true
+            repositoryUrl: https://github.com/guru-rep/cdro-agent-container.git
+        strategy:
+          allBranchesSame: {}
+

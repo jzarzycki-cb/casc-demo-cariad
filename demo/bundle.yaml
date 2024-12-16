@@ -1,8 +1,8 @@
-id: "sbsatest1"
-version: "1"
+id: "demo1"
+version: "2"
 apiVersion: "1"
-description: "sbsa-cask-bundle 1"
-availabilityPattern: "sbsa.*"
+description: "demo-casc-bundle "
+availabilityPattern: "demo*"
 parent: "base"
 plugins:
   - "plugins.yaml"

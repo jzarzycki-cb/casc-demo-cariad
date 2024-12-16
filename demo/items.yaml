@@ -1,0 +1,32 @@
+removeStrategy:
+  items: "none"
+  rbac: "sync"
+
+items:
+  - kind: "folder"
+    name: "admin"
+    displayName: "admin jobs"
+    description: "administrative jobs"
+
+
+  - kind: folder
+    name: jobs
+    description: ''
+    displayName: jobs
+
+
+  - kind: folder
+    name: demos
+    displayName: demos
+    items:
+    - kind: folder
+      name: pipeline-templates
+      description: ''
+      displayName: pipeline-templates
+      properties:
+      - envVars: {}
+      - itemRestrictions:
+          allowedTypes:
+          - org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject
+          - CentralServicesDefault/MavenJavaPipeline
+          filter: true

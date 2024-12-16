@@ -1,37 +1,5 @@
 jenkins:
-  systemMessage: 'Jenkins configured using CloudBees CI CasC - bundle team-a demo a THIS IS NEW'
-  clouds:
-  - azureVM:
-      azureCredentialsId: "93e2eeff-26a8-414e-aa32-ed64ba54ac92"
-      cloudName: "Azure VM Cloud"
-      configurationStatus: "pass"
-      deploymentTimeout: 1200
-      existingResourceGroupName: "stu_ad_tests"
-      maxVirtualMachinesLimit: 2
-      newResourceGroupName: "stu_ad_tests"
-      resourceGroupReferenceType: "existing"
-      vmTemplates:
-      - builtInImage: "Ubuntu 22.04 LTS"
-        credentialsId: "68c3245c-f238-40b7-9994-b79d52fb8cdc"
-        diskType: "managed"
-        doNotUseMachineIfInitFails: true
-        executeInitScriptAsRoot: true
-        imageReference:
-          version: "latest"
-        imageTopLevelType: "basic"
-        javaPath: "java"
-        labels: "azure"
-        location: "East US"
-        maximumDeploymentSize: 10
-        newStorageAccountName: "azurejenkinsvm"
-        noOfParallelJobs: 1
-        osType: "Linux"
-        retentionStrategy: "azureVMCloudOnce"
-        storageAccountNameReferenceType: "new"
-        storageAccountType: "Standard_LRS"
-        templateName: "agenttemplate"
-        usageMode: NORMAL
-        virtualMachineSize: "Standard_B1s"
+  systemMessage: 'Jenkins configured using CloudBees CI CasC - bundle team-a demo a demo'
   
 credentials:
   system:
@@ -43,4 +11,10 @@ credentials:
           password: "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"
           scope: GLOBAL
           username: "gururepservice"
-
+unclassified:
+  hibernationConfiguration:
+    activities:
+    - "build"
+    - "web"
+    enabled: true
+    gracePeriod: 600

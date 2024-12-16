@@ -1,0 +1,40 @@
+jenkins:
+  systemMessage: 'Jenkins configured using CloudBees CI CasC - bundle demo'
+aws:
+  awsCredentials:
+    credentialsId: "s3-ws-cache"
+    region: "us-east-1"
+  s3:
+    container: "emea-sa-ci-caching"
+    disableSessionToken: false
+    useHttp: false
+    usePathStyleUrl: false
+    useTransferAcceleration: false
+    
+unclassified:
+  workspaceCache:
+    cacheManager: "s3"
+  hibernationConfiguration:
+    activities:
+    - "build"
+    - "web"
+    enabled: true
+    gracePeriod: 6000
+  sonarGlobalConfiguration:
+    buildWrapperEnabled: false
+    installations:
+    - credentialsId: "sonarqube-admin-token"
+      name: "default"
+      serverUrl: "https://${SONARDNS}"
+      triggers:
+        skipScmCause: false
+        skipUpstreamCause: false
+  electricflow:
+    configurations:
+    - configurationName: "CdConfiguration"
+      credentialId: "cd-admin-cred"
+      credsType: "storedCreds"
+      doNotSendBuildDetails: false
+      electricFlowApiVersion: "/rest/v1.0"
+      electricFlowUrl: "https://${CDDNS}"
+      ignoreSslConnectionErrors: false
