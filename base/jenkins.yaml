@@ -1,0 +1,82 @@
+jenkins:
+  numExecutors: 0
+  clouds:
+  - "operationsCenterAgentProvisioningService"
+  globalNodeProperties:
+  - envVars:
+      env:
+      - key: "PROJECTNAME"
+        value: "https://${PROJECTNAME}"
+      - key: "NEXUSDNS"
+        value: "https://${NEXUSDNS}"
+      - key: "SONARDNS"
+        value: "https://${SONARDNS}"
+      - key: "CDDNS"
+        value: "https://${CDDNS}"
+      - key: "ARGODNS"
+        value: "https://${ARGODNS}"
+      - key: "GITLABDNS"
+        value: "https://${GITLABDNS}"
+
+unclassified:
+  cascItemsConfiguration:
+      variableInterpolationEnabledForAdmin: true
+      variableInterpolationEnabledForNonAdmin: true
+  globalLibraries:
+    libraries:
+    - name: "default"
+      retriever:
+        modernSCM:
+          clone: true
+          scm:
+            github:
+              configuredByUrl: true
+              credentialsId: "gururepservice-cred"
+              repoOwner: "guru-rep"
+              repository: "demo-libs"
+              repositoryUrl: "https://github.com/guru-rep/demo-libs.git"
+              traits:
+              - gitHubBranchDiscovery:
+                  strategyId: 1
+              - gitHubPullRequestDiscovery:
+                  strategyId: 1
+              - gitHubForkDiscovery:
+                  strategyId: 1
+                  trust: "gitHubTrustPermissions"
+              - cloneOption:
+                  extension:
+                    honorRefspec: true
+                    noTags: true
+                    shallow: true
+    - defaultVersion: "main"
+      name: "clib"
+      retriever:
+        modernSCM:
+          clone: true
+          scm:
+            github:
+              configuredByUrl: true
+              credentialsId: "gururepservice-cred"
+              repoOwner: "guru-rep"
+              repository: "demo-libs"
+              repositoryUrl: "https://github.com/guru-rep/control-libs.git"
+              traits:
+              - gitHubBranchDiscovery:
+                  strategyId: 1
+              - gitHubPullRequestDiscovery:
+                  strategyId: 1
+              - gitHubForkDiscovery:
+                  strategyId: 1
+                  trust: "gitHubTrustPermissions"
+              - cloneOption:
+                  extension:
+                    honorRefspec: true
+                    noTags: true
+                    shallow: true
+             
+                  
+                  
+  cloudbeesPrometheus:
+    collectingMetricsPeriodInSeconds: 30
+
+  
