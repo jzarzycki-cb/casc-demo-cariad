@@ -1,5 +1,5 @@
 id: "mille_base"
-version: "1"
+version: "2024-12-17-v12345"
 apiVersion: "2"
 description: "mille first bundle"
 availabilityPattern: ".*"
