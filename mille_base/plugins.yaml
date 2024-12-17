@@ -7,3 +7,4 @@ plugins:
 - id: cloudbees-pipeline-explorer
 - id: managed-master-hibernation
 - id: cloudbees-quiet-start
+- id: pipeline-model-definition #declarative pipelines
